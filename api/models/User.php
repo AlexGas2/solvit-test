@@ -8,11 +8,12 @@ class User extends CommonUser
 
     public function fields()
     {
-        return parent::fields();
+        return [
+            'id',
+            'first_name',
+            'last_name',
+            'albums'
+        ];
     }
 
-    public function extraFields()
-    {
-        return [];
-    }
 }

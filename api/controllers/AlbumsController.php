@@ -3,17 +3,17 @@ namespace api\controllers;
 
 
 use api\components\ApiSerializer;
-use api\models\User;
+use api\models\Album;
 use yii\web\NotFoundHttpException;
 
-class UsersController extends BaseController
+class AlbumsController extends BaseController
 {
-    public $modelClass = 'api\models\User';
+    public $modelClass = 'api\models\Album';
 
     public $serializer = [
         'class' => ApiSerializer::class,
         'defaultFields' => [
-            'id', 'first_name', 'last_name'
+            'id', 'title'
         ]
     ];
 
@@ -30,14 +30,14 @@ class UsersController extends BaseController
     public function actionView($id)
     {
 
-        $user = User::findOne((int)$id);
+        $album = Album::findOne((int)$id);
 
-        if ($user === null) {
-            throw new NotFoundHttpException('User Not Found');
+        if ($album === null) {
+            throw new NotFoundHttpException('Album Not Found');
         }
 
-        $this->serializer['defaultFields'] = ['id', 'first_name', 'last_name', 'albums'];
+        $this->serializer['defaultFields'] = ['id', 'title', 'photos'];
 
-        return $user;
+        return $album;
     }
 }

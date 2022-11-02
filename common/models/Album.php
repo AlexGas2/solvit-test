@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "albums".
@@ -10,6 +11,8 @@ use Yii;
  * @property int $id
  * @property int $user_id
  * @property string $title
+ *
+ * @property Photo[] $photos
  */
 class Album extends \yii\db\ActiveRecord
 {
@@ -43,5 +46,10 @@ class Album extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'title' => 'Title',
         ];
+    }
+
+    public function getPhotos(): ActiveQuery
+    {
+        return $this->hasMany(Photo::class, ['album_id' => 'id']);
     }
 }
