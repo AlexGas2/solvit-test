@@ -45,7 +45,8 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
-                        'users'
+                        'users',
+                        'albums'
                     ],
                     'pluralize' => false
                 ],
